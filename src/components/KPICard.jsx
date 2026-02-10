@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowUp, ArrowDown, Minus } from 'lucide-react';
 import classNames from 'classnames';
 
-const KPICard = ({ title, value, change, format = 'number', prefix = '', suffix = '', invert = false }) => {
+const KPICard = ({ title, value, change, prefix = '', suffix = '', invert = false }) => {
     const isPositive = change > 0;
     const isNegative = change < 0;
 
