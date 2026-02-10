@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import KPICard from './KPICard';
 import ChartWidget from './ChartWidget';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar, ComposedChart, Line, Legend, LineChart } from 'recharts';
@@ -24,10 +24,21 @@ const ProjectDashboard = ({ data }) => {
     // 1. Get unique Projects
     const projects = useMemo(() => {
         if (!data) return [];
-        return [...new Set(data.map(item => item.Project))].sort();
+        return [...new Set(data.map(item => item.Project).filter(Boolean))].sort();
     }, [data]);
 
     const [selectedProject, setSelectedProject] = useState(projects[0] || null);
+
+    useEffect(() => {
+        if (!projects.length) {
+            setSelectedProject(null);
+            return;
+        }
+
+        if (!selectedProject || !projects.includes(selectedProject)) {
+            setSelectedProject(projects[0]);
+        }
+    }, [projects, selectedProject]);
 
     // 2. Filter Data for Selected Project
     const filteredData = useMemo(() => {

@@ -7,6 +7,7 @@ import ProjectDashboard from './ProjectDashboard';
 const Dashboard = () => {
     const { data, loading, error } = useDashboardData();
     const [activeTab, setActiveTab] = useState('company');
+    const hasData = Array.isArray(data) && data.length > 0;
 
     if (loading) {
         return (
@@ -16,7 +17,7 @@ const Dashboard = () => {
         );
     }
 
-    if (error) {
+    if (error && !hasData) {
         return (
             <div className="dashboard-content">
                 <div style={{ background: 'rgba(255, 0, 85, 0.2)', border: '1px solid var(--error-neon)', padding: '1rem', borderRadius: '8px', marginBottom: '1rem', color: '#fff' }}>
@@ -28,6 +29,11 @@ const Dashboard = () => {
 
     return (
         <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            {error && (
+                <div style={{ background: 'rgba(255, 153, 0, 0.2)', border: '1px solid #ff9900', padding: '1rem', borderRadius: '8px', marginBottom: '1rem', color: '#fff' }}>
+                    Live data unavailable. Showing fallback dataset. ({error})
+                </div>
+            )}
 
             {/* 1. Tab Navigation Bar */}
             <div className="tab-nav" style={{

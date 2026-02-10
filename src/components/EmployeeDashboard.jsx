@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import KPICard from './KPICard';
 import ChartWidget from './ChartWidget';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar, ComposedChart, Line, Legend, LineChart } from 'recharts';
@@ -24,10 +24,21 @@ const EmployeeDashboard = ({ data }) => {
     // 1. Get unique Employees
     const employees = useMemo(() => {
         if (!data) return [];
-        return [...new Set(data.map(item => item.Employee))].sort();
+        return [...new Set(data.map(item => item.Employee).filter(Boolean))].sort();
     }, [data]);
 
     const [selectedEmployee, setSelectedEmployee] = useState(employees[0] || null);
+
+    useEffect(() => {
+        if (!employees.length) {
+            setSelectedEmployee(null);
+            return;
+        }
+
+        if (!selectedEmployee || !employees.includes(selectedEmployee)) {
+            setSelectedEmployee(employees[0]);
+        }
+    }, [employees, selectedEmployee]);
 
     // 2. Filter Data for Selected Employee
     const filteredData = useMemo(() => {
