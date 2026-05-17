@@ -1,8 +1,8 @@
-# Xtreme Online Solutions - Performance Dashboard 2025
+# Livechat Dashboard
 
 ![Dashboard Status](https://img.shields.io/badge/Status-Live-00f3ff?style=for-the-badge&logo=react)
 
-A high-performance, cyberpunk-themed analytics dashboard built to visualize company, employee, and project metrics in real-time from Google Sheets data.
+CX analytics dashboard built to visualize company, employee, and project metrics from Google Sheets data.
 
 ## Live Demo
 
@@ -28,11 +28,27 @@ A high-performance, cyberpunk-themed analytics dashboard built to visualize comp
 - **Smart Aggregation**: Automatically sums volumes and averages rates based on the active view
 - **Sanitization**: Handles noisy data (for example, strips `s`, `%`, and text from number fields)
 
+## Problem
+
+Live chat operations need fast visibility into response time, volume, leads, and agent performance. When the data lives in spreadsheets, leaders often lose time manually preparing reports.
+
+## Solution
+
+The dashboard reads Google Sheets CSV data and turns it into operational views for company, employee, and project performance. It focuses on the metrics a CX lead needs to scan quickly.
+
 ## Tech Stack
 - **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
 - **Styling**: Vanilla CSS (custom design system with CSS variables)
 - **Charts**: [Recharts](https://recharts.org/)
 - **Data Fetching**: [PapaParse](https://www.papaparse.com/)
+
+## What This Shows
+
+- Domain knowledge in CX operations
+- Dashboard design for operational decision-making
+- Data cleaning and aggregation from spreadsheet sources
+- Chart-based reporting with React and Recharts
+- Deployed frontend app with live demo
 
 ## Quick Start
 
